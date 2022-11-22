@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+%\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\title{Proyecto 2 \\ Complejidad y Optimización}
+\author{Alejandro Satizabal 1726041 \\ Nombre Apellido CÓDIGO \\ Nombre Apellido CÓDIGO}
+\date{Diciembre 2022}
+
+\begin{document}
+
+\maketitle
+
+% Modelo de la instancia
+\section{Modelo de la instancia}
+\subsection{Parámetros}
+
+\begin{itemize}
+    \item Cantidad máxima de páginas que contiene el periodico: 10
+    \item Temas de noticias:  Internacional, Nacional, Local, Deporte, Cultura
+    \item Cantidad máxima de páginas por tema:
+    \begin{itemize}
+        \item Internacional: 9
+        \item Nacional: 7
+        \item Local: 5
+        \item Deporte: 4
+        \item Cultura: 3
+    \end{itemize}
+    \item Cantidad mínima de páginas por tema:
+    \begin{itemize}
+        \item Internacional: 5
+        \item Nacional: 4
+        \item Local: 2
+        \item Deporte:2 
+        \item Cultura: 1
+    \end{itemize}
+    \item Cantidad de lectores promedio de cada tema por página incluida:
+    \begin{itemize}
+        \item Internacional: 1500
+        \item Nacional: 2000
+        \item Local: 1000
+        \item Deporte: 1500
+        \item Cultura: 750
+    \end{itemize}
+\end{itemize}
+
+\subsection{Variables}
+    Enteras
+\begin{itemize}
+    \item $Inter$: representa la cantidad de páginas sobre el tema que para incluir en el periodico
+    \item $Nacio$: representa la cantidad de páginas sobre el tema que para incluir en el periodico
+    \item $Local$: representa la cantidad de páginas sobre el tema que para incluir en el periodico
+    \item $Depor$: representa la cantidad de páginas sobre el tema que para incluir en el periodico
+    \item $Cultu$: representa la cantidad de páginas sobre el tema que para incluir en el periodico
+\end{itemize}
+
+    Booleanas
+\begin{itemize}
+    \item $InterB$: representa si ese tema es incluido o no en la selección final (1 se incluye, 0 no se incluye)
+    \item $NacioB$: representa si ese tema es incluido o no en la selección final (1 se incluye, 0 no se incluye)
+    \item $Local$B: representa si ese tema es incluido o no en la selección final (1 se incluye, 0 no se incluye)
+    \item $DeporB$: representa si ese tema es incluido o no en la selección final (1 se incluye, 0 no se incluye)
+    \item $CultuB$: representa si ese tema es incluido o no en la selección final (1 se incluye, 0 no se incluye)
+\end{itemize}
+
+\subsection{Restricciones}
+\begin{itemize}
+    \item No se puede superar la cantidad de páginas en el periodico:
+    
+    $Inter*InterB + Nacio*NacioB + Local*LocalB + Depor*DeporB + Cultu*CultuB \leq 10$
+    
+    \item Las variables no pueden bajar de valores míminos:
+    \begin{itemize}
+        \item $Inter \geq 5$
+        \item $Nacio \geq 4$
+        \item $Local \geq 2$
+        \item $Depor \geq 2$
+        \item $Cultu \geq 1$
+    \end{itemize}
+    \item Las variables no pueden superar valores máximos:
+    \begin{itemize}
+        \item $Inter \leq 9$
+        \item $Nacio \leq 7$
+        \item $Local \leq 5$
+        \item $Depor \leq 4$
+        \item $Cultu \leq 3$
+    \end{itemize}
+\end{itemize}
+
+\subsection{Función Objetivo}
+
+Maximice: $1500*Inter*InterB + 2000*Natio*NatioB + 1000*Local*LocalB + 1500*Depor*DeporB + 750*Cultu*CultuB$
+
+% Modelo Generalizado
+\section{Modelo Generalizado}
+\subsection{Parámetros}
+
+Sea $T$ el conjunto de temas tal que $i \in T$.
+
+\begin{itemize}
+    \item $Minimo_i$: representa la cantidad de páginas mínima que tiene el tema $i$
+    \item $Maximo_i$: representa la cantidad de páginas máxima que tiene el tema $i$
+    \item $Lectores_i$: representa la cantidad de lectores promedio del tema $i$ por página incluida
+    \item $P$: representa la cantidad máxima de páginas que incluye el periodico
+\end{itemize}
+
+\subsection{Variables}
+\begin{itemize}
+    \item $Temas_i$: representa la cantidad de páginas del tema $i$
+    
+    $\forall i \in T, Temas_i \geq 0$
+
+    \item $TemasB_i$: representa si la variable $i$ es tomada en cuenta o no en la selección final
+    
+    $\forall i \in T, TemasB_i \in \{0,1\}$
+\end{itemize}
+
+\subsection{Restricciones}
+\begin{itemize}
+    \item La cantidad de páginas total includia satisface:
+    
+    %$\sum_{i \in A}^n$
+    $\sum_{i \in T}(Tema_i*TemaB_i) \leq P$
+    
+    \item Cada tema para incluir satisface:
+    
+    $\forall i \in T, Tema_i \geq Minimo_i$
+    
+    \item Cada tema para incluir satisface:
+    
+    $\forall i \in T, Tema_i \leq Maximo_i$
+\end{itemize}
+
+\subsection{Función Objetivo}
+
+Maximice: $\sum_{i \in T} Tema_i * TemaB_i * Lectores_i$
+
+\end{document}
+
