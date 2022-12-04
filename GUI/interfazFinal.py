@@ -1,9 +1,7 @@
 
 from tkinter import *
 from pymzn import dzn
-import pymzn
-import minizinc as minizinc
-from minizinc import Instance,Model,Solver
+from os import system
 
 root= Tk()
 root.title("ProblemaPeriodico")
@@ -102,19 +100,8 @@ def nuevaVentana():
             }
         with open("example.dzn", "w") as f:
             f.write("\n".join(dzn.dict2dzn(data)))
+        system("minizinc --solver Gecode periodicoGenerico.mzn example.dzn >> resultado.txt")
 
-        """Opcion 1 usando pymzn"""
-        solns = pymzn.minizinc('periodicoGenerico.mzn', 'example.dzn')
-        print(solns)
-
-        """Opcion2 Usando minizinc"""
-        x=Solver.lookup("gecode")
-        M1=Model("periodicoGenerico.mzn")
-        M1.add_file("example.dzn")
-
-        instance1=Instance(x,M1)
-        result = instance1.solve()
-        print(result)
 
     
     botonEnviarDatos=Button(ventanaDatos, text="Enviar", command=guardarDatos)
