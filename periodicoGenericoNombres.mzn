@@ -1,5 +1,6 @@
 %Lectura de datos:
 int: t; % Temas
+array[1..t] of string: nom; % Nombres de los temas
 int: p; % Páginas que tiene el periodico
 array[1..t] of int: minp; % Cantidad mímima de páginas de un tema
 array[1..t] of int: maxp; % Cantidad máxima de páginas de un tema
@@ -20,4 +21,19 @@ var int: lectores;
 constraint lectores = sum(j in 1..t)( rea[j] * tp[j] * tb[j] ); % Lectores
 solve maximize lectores;
 
+%output ["X=", show(X), "\n Y=", show(Y), "\n C=", show(C), "\n aux=", show(aux)];
+%output ["\n Internacional | ¿Se incluye?: ", show(binter), " | Cantidad incluida: ", show(inter)];
+%output ["\n Nacional | ¿Se incluye?: ", show(bnati), " | Cantidad incluida: ", show(nati)];
+%output ["\n Local | ¿Se incluye?: ", show(blocal), " | Cantidad incluida: ", show(local)];
+%output ["\n Deporte | ¿Se incluye?: ", show(bsports), " | Cantidad incluida: ", show(sports)];
+%output ["\n Cultura | ¿Se incluye?: ", show(bculture), " | Cantidad incluida: ", show(culture)];
+
+%output["Mapa Coloreado = \(tp)"];
+
+%output["Uno ", show(tp), "Dos ", show(tb)];
+
+output ["\nTemas: ", show(nom)];
+output ["\nTemas incluidos: ", show(tb)];
+output ["\nCantidad de páginas incluidas por tema: ", show(tp)];
 output ["\nCantidad de lectores totales: ", show(lectores)];
+
