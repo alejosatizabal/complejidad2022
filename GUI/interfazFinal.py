@@ -1,5 +1,7 @@
 
 from tkinter import *
+from pymzn import dzn
+import pymzn
 
 root= Tk()
 root.title("ProblemaPeriodico")
@@ -82,10 +84,25 @@ def nuevaVentana():
             arrayMaxPagsPeriodico.append(int(MaxPaginasPeriodico[i].get()))
             arrayMinPagsPeriodico.append(int(MinPaginasPeriodico[i].get()))
             arrayLectores.append(int(lectoresPeriodico[i].get()))
+        print(nroTemas)
+        print(nroPagina)
         print(arrayTemasPeriodico)
         print(arrayMaxPagsPeriodico)
         print(arrayMinPagsPeriodico)
         print(arrayLectores)
+
+        data = {
+                "t": nroTemas,
+                "p": nroPagina,
+                "minp": arrayMinPagsPeriodico,
+                "maxp": arrayMaxPagsPeriodico,
+                "rea": arrayLectores,
+            }
+        with open("example.dzn", "w") as f:
+            f.write("\n".join(dzn.dict2dzn(data)))
+
+        solns = pymzn.minizinc('periodicoGenerico.mzn', 'example.dzn')
+        print(solns)
 
     
     botonEnviarDatos=Button(ventanaDatos, text="Enviar", command=guardarDatos)
