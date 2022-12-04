@@ -1,0 +1,9 @@
+
+- La formalización de los modelos debe ser entregadas en un archivo pdf que siga
+la convención CódigodeEstudiante1-CódigodeEstudiante2-CódigodeEstudiante3-Entrega2CyOpt20191.pdf
+
+    1726041-1745283-1840309-Entrega2CyOpt20222.pdf
+
+El archivo pdf junto con los modelos deberá subirse al campus en un archivo comprimido que siga la convención
+
+    1726041-1745283-1840309-Entrega2CyOpt20222.zip
