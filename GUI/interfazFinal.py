@@ -10,14 +10,21 @@ buscador.grid(row=0, column=0, padx=5, pady=5)
 
 
 etiqueta=Label(buscador, text="¿Cuantos temas quiere ingresar?").pack()
-temas=Entry(buscador, text="temas")
+temas=Entry(buscador)
 temas.pack()
 "nroTemas=temas.get()"
 
 etiqueta2=Label(buscador, text="¿Cuantas páginas quiere que tenga el periodico?").pack()
 pagina=Entry(buscador, text="paginas")
 pagina.pack()
-
+"""------------------------------------------------"""
+nTemasPeriodico=temas.get()
+nPaginasPeriodico=pagina.get()
+arrayTemasPeriodico=[]
+arrayMaxPagsPeriodico=[]
+arrayMinPagsPeriodico=[]
+arrayLectores=[]
+"""------------------------------------------------"""
 
 "nroPagina=pagina.get()"
 
@@ -35,25 +42,53 @@ def nuevaVentana():
     nroTemas=temas.get()
     nroPagina=pagina.get()
     temasPeriodico= crearEtiquetaCampos(nroTemas, 0)
+    varNombre=StringVar()
     for i in range(0,len(temasPeriodico)):
         exec("etiqueta=Label(labelTemas, text=' " + str(temasPeriodico[i]) +"').pack(padx=5, pady=5)")
-        exec(str(temasPeriodico[i]) + "=Entry(labelTemas).pack(padx=10, pady=10)")
+        """exec(str(temasPeriodico[i]) + "=Entry(labelTemas).pack(padx=10, pady=10)")"""
+        varNombre='temasPeriodico'+str(i)
+        temasPeriodico[i]=Entry(labelTemas, textvariable=varNombre)
+        temasPeriodico[i].pack(padx=10, pady=10)
+        """print(temasPeriodico[i])"""
+        """exec("varA=" + str(temasPeriodico[i]) + ".get()")"""
         """lambda : print(Nombre_tema)"""
     MaxPaginasPeriodico= crearEtiquetaCampos(nroTemas, 1)
     for i in range(0,len(MaxPaginasPeriodico)):
         exec("etiqueta=Label(labelMaxP, text=' " + str(MaxPaginasPeriodico[i]) +"').pack(padx=5, pady=5)")
-        exec(str(MaxPaginasPeriodico[i]) + "=Entry(labelMaxP).pack(padx=10, pady=10)")
+        """exec(str(MaxPaginasPeriodico[i]) + "=Entry(labelMaxP).pack(padx=10, pady=10)")"""
+        varNombre='MaxPaginasPeriodico'+str(i)
+        MaxPaginasPeriodico[i]=Entry(labelMaxP, textvariable=varNombre)
+        MaxPaginasPeriodico[i].pack(padx=10, pady=10)
     MinPaginasPeriodico= crearEtiquetaCampos(nroTemas, 2)
     for i in range(0,len(MinPaginasPeriodico)):
         exec("etiqueta=Label(labelMinP, text=' " + str(MinPaginasPeriodico[i]) +"').pack(padx=5, pady=5)")
-        exec(str(MinPaginasPeriodico[i]) + "=Entry(labelMinP).pack(padx=10, pady=10)")
+        """exec(str(MinPaginasPeriodico[i]) + "=Entry(labelMinP).pack(padx=10, pady=10)")"""
+        varNombre='MinPaginasPeriodico'+str(i)
+        MinPaginasPeriodico[i]=Entry(labelMinP, textvariable=varNombre)
+        MinPaginasPeriodico[i].pack(padx=10, pady=10)
     lectoresPeriodico= crearEtiquetaCampos(nroTemas, 3)
     for i in range(0,len(lectoresPeriodico)):
         exec("etiqueta=Label(labelRea, text=' " + str(lectoresPeriodico[i]) +"').pack(padx=5, pady=5)")
-        exec(str(lectoresPeriodico[i]) + "=Entry(labelRea).pack(padx=10, pady=10)")
+        """exec(str(lectoresPeriodico[i]) + "=Entry(labelRea).pack(padx=10, pady=10)")"""
+        varNombre='lectoresPeriodico'+str(i)
+        lectoresPeriodico[i]=Entry(labelRea, textvariable=varNombre)
+        lectoresPeriodico[i].pack(padx=10, pady=10)
+
+    def guardarDatos():
+        nroTemas=temas.get()
+        for i in range(0, len(temasPeriodico)):
+            """print(temasPeriodico[i].get())"""
+            arrayTemasPeriodico.append(temasPeriodico[i].get())
+            arrayMaxPagsPeriodico.append(int(MaxPaginasPeriodico[i].get()))
+            arrayMinPagsPeriodico.append(int(MinPaginasPeriodico[i].get()))
+            arrayLectores.append(int(lectoresPeriodico[i].get()))
+        print(arrayTemasPeriodico)
+        print(arrayMaxPagsPeriodico)
+        print(arrayMinPagsPeriodico)
+        print(arrayLectores)
+
     
-    
-    botonEnviarDatos=Button(ventanaDatos, text="Enviar")
+    botonEnviarDatos=Button(ventanaDatos, text="Enviar", command=guardarDatos)
     botonEnviarDatos.grid(row=1, column=3, padx=10, pady=5)
 
     
@@ -73,9 +108,9 @@ def crearEtiquetaCampos(nroCampos, id):
             variables.append("Numero_lectores_tema" + str(i))    
     return variables
 
-"""command=guardarDatos
-    def guardarDatos():
-    print(Nombre_tema1.get()) """
+
+
+        
 
 boton1=Button(buscador, text="Aceptar", command=nuevaVentana).pack( side="left")
 boton2=Button(buscador, text="holaboton1").pack(side="right")
