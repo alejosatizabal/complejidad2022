@@ -1,0 +1,10 @@
+
+Cantidad de lectores totales: 2514
+----------
+==========
+
+Temas incluidos: [true, true]
+Cantidad de páginas incluidas por tema: [5, 4]
+Cantidad de lectores totales: 6467
+----------
+==========
