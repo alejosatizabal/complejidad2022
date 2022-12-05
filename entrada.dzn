@@ -1,5 +1,5 @@
-t = 3;
-p = 20;
-minp = array1d(1..3, [3, 5, 4]);
-maxp = array1d(1..3, [15, 20, 12]);
-rea = array1d(1..3, [500, 200, 300]);
+t = 2;
+p = 2;
+minp = array1d(1..2, [2, 1]);
+maxp = array1d(1..2, [2, 2]);
+rea = array1d(1..2, [22, 22]);

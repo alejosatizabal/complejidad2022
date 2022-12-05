@@ -103,12 +103,15 @@ def nuevaVentana():
             f.write("\n".join(dzn.dict2dzn(data)))
         system("minizinc --solver Gecode periodicoGenerico.mzn entrada.dzn > resultado.txt")
 
+        ventanaDatos.destroy()
+
         
 
 
     
     botonEnviarDatos=Button(ventanaDatos, text="Enviar", command=guardarDatos)
     botonEnviarDatos.grid(row=1, column=3, padx=10, pady=5)
+    
 
     
     
@@ -129,13 +132,25 @@ def crearEtiquetaCampos(nroCampos, id):
 
 
 def mostrarResultado():
+    ventanaResultado=Toplevel()
+    ventanaResultado.title("Resultado")
+    "nroTemas222=temas.get()"
     auxArray=[]
+    "arrayTemasPeriodico1=['futbol', 'tennis']"
+    etiquetaa=[]
+    "temasImprimir=['']*len(arrayTemasPeriodico1)"
+    temasImprimir=['']*len(arrayTemasPeriodico)
     with open("resultado.txt") as archivo:
         for linea in archivo:
             auxArray.append(str(linea))
+            etiquetaa.append(" ")
+    for i in range(0, len(arrayTemasPeriodico)):
+        temasImprimir[i]=Label(ventanaResultado, text=arrayTemasPeriodico[i])
+        temasImprimir[i].pack(padx=10, pady=10)
     for i in range(0, len(auxArray)):
-        etiqueta[i]=Label(buscador, text=auxArray[i])
-        etiqueta[i].pack(padx=10, pady=10)
+        etiquetaa[i]=Label(ventanaResultado, text=auxArray[i])
+        etiquetaa[i].pack(padx=10, pady=10)
+    
         
 
 boton1=Button(buscador, text="Aceptar", command=nuevaVentana).pack( side="left")
