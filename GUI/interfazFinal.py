@@ -128,12 +128,18 @@ def crearEtiquetaCampos(nroCampos, id):
     return variables
 
 
-
+def mostrarResultado():
+    auxArray=[]
+    with open("resultado.txt") as archivo:
+        for linea in archivo:
+            auxArray.append(str(linea))
+    for i in range(0, len(auxArray)):
+        etiqueta[i]=Label(buscador, text=auxArray[i])
+        etiqueta[i].pack(padx=10, pady=10)
         
 
 boton1=Button(buscador, text="Aceptar", command=nuevaVentana).pack( side="left")
-boton2=Button(buscador, text="holaboton1").pack(side="right")
-
+boton2=Button(buscador, text="Ver Resultado", command=mostrarResultado).pack(side="right")
 
 
 
