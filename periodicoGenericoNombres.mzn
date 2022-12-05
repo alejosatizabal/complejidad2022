@@ -1,6 +1,5 @@
 %Lectura de datos:
 int: t; % Temas
-array[1..t] of string: nom; % Nombres de los temas
 int: p; % Páginas que tiene el periodico
 array[1..t] of int: minp; % Cantidad mímima de páginas de un tema
 array[1..t] of int: maxp; % Cantidad máxima de páginas de un tema
@@ -32,7 +31,6 @@ solve maximize lectores;
 
 %output["Uno ", show(tp), "Dos ", show(tb)];
 
-output ["\nTemas: ", show(nom)];
 output ["\nTemas incluidos: ", show(tb)];
 output ["\nCantidad de páginas incluidas por tema: ", show(tp)];
 output ["\nCantidad de lectores totales: ", show(lectores)];
