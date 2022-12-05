@@ -138,4 +138,5 @@ boton2=Button(buscador, text="holaboton1").pack(side="right")
 
 
 
+
 buscador.mainloop()
