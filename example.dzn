@@ -1,5 +1,6 @@
 t = 1;
 p = 1;
 minp = array1d(1..1, [1]);
+nom = array1d(1..1, [1]);
 maxp = array1d(1..1, [1]);
 rea = array1d(1..1, [1]);

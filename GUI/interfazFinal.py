@@ -80,7 +80,7 @@ def nuevaVentana():
         nroTemas=temas.get()
         for i in range(0, len(temasPeriodico)):
             """print(temasPeriodico[i].get())"""
-            arrayTemasPeriodico.append(temasPeriodico[i].get())
+            arrayTemasPeriodico.append(str(temasPeriodico[i].get()))
             arrayMaxPagsPeriodico.append(int(MaxPaginasPeriodico[i].get()))
             arrayMinPagsPeriodico.append(int(MinPaginasPeriodico[i].get()))
             arrayLectores.append(int(lectoresPeriodico[i].get()))
@@ -95,12 +95,16 @@ def nuevaVentana():
                 "t": nroTemas,
                 "p": nroPagina,
                 "minp": arrayMinPagsPeriodico,
+                "nom":arrayTemasPeriodico,
                 "maxp": arrayMaxPagsPeriodico,
                 "rea": arrayLectores,
             }
-        with open("example.dzn", "w") as f:
+        print(data)
+        with open("entrada.dzn", "w") as f:
             f.write("\n".join(dzn.dict2dzn(data)))
-        system("minizinc --solver Gecode periodicoGenerico.mzn example.dzn >> resultado.txt")
+        system("minizinc --solver Gecode periodicoGenerico.mzn entrada.dzn >> resultado.txt")
+
+        
 
 
     
