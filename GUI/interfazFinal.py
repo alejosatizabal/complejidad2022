@@ -95,14 +95,13 @@ def nuevaVentana():
                 "t": nroTemas,
                 "p": nroPagina,
                 "minp": arrayMinPagsPeriodico,
-                "nom":arrayTemasPeriodico,
                 "maxp": arrayMaxPagsPeriodico,
                 "rea": arrayLectores,
             }
         print(data)
         with open("entrada.dzn", "w") as f:
             f.write("\n".join(dzn.dict2dzn(data)))
-        system("minizinc --solver Gecode periodicoGenerico.mzn entrada.dzn >> resultado.txt")
+        system("minizinc --solver Gecode periodicoGenerico.mzn entrada.dzn > resultado.txt")
 
         
 
